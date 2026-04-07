@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 
+from pages.home import HomePage
 from pages.register import RegisterPage
 
 
@@ -16,3 +17,14 @@ def test_empty_registration_validation(page: Page):
 
     expect(register_page.email_validation).to_be_visible()
     expect(register_page.password_empty_validation)
+
+
+def test_successful_registration(page: Page, user_data):
+    register_page = RegisterPage(page)
+    register_page.navigate_to_registration()
+    register_page.register_new_user(user_data['email'], user_data['password'])
+
+    home_page = HomePage(page)
+    home_page.navigation_check()
+
+    expect(home_page.home_heading).to_be_visible()

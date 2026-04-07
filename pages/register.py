@@ -15,3 +15,9 @@ class RegisterPage:
 
     def click_create_when_fields_empty(self):
         self.create_account_button.click()
+
+    def register_new_user(self, email, password):
+        self.email_textbox.fill(email)
+        self.password_textbox.fill(password)
+        self.confirm_password_textbox.fill(password)
+        self.create_account_button.click()
