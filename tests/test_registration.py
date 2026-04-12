@@ -22,7 +22,7 @@ def test_empty_registration_validation(page: Page):
 def test_successful_registration(page: Page, user_data):
     register_page = RegisterPage(page)
     register_page.navigate_to_registration()
-    register_page.register_new_user(user_data['email'], user_data['password'])
+    register_page.register_new_user(user_data["email"], user_data["password"])
 
     home_page = HomePage(page)
     home_page.navigation_check()
