@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 
@@ -5,7 +7,10 @@ import pytest
 def user_data(faker):
     data = {'email': faker.email(), 'password': faker.password()}
 
-    with open('userdata.txt', 'a') as f:
-        f.write(f'{data['email']}:{data['password']}\n')
+    existing_file = json.load(open('userData.json', 'r'))
+
+    existing_file.append(data)
+
+    json.dump(existing_file, open('userData.json', 'w'))
 
     return data
