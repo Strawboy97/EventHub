@@ -7,6 +7,7 @@ from pages.register import RegisterPage
 def test_navigation_successful(page: Page):
     register_page = RegisterPage(page)
     register_page.navigate_to_registration()
+
     expect(register_page.registration_heading).to_be_visible()
 
 
@@ -16,7 +17,14 @@ def test_empty_registration_validation(page: Page):
     register_page.click_create_when_fields_empty()
 
     expect(register_page.email_validation).to_be_visible()
-    expect(register_page.password_empty_validation)
+    expect(register_page.password_empty_validation).to_be_visible()
+
+def test_passwords_not_matching(page: Page, user_data):
+    register_page = RegisterPage(page)
+    register_page.navigate_to_registration()
+    register_page.click_create_when_passwords_not_matching(user_data["email"], user_data["password"])
+
+    expect(register_page.password_not_matching_validation).to_be_visible()
 
 
 def test_successful_registration(page: Page, user_data):

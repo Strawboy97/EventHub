@@ -14,6 +14,7 @@ class RegisterPage:
         self.password_empty_validation = page.get_by_text(
             "Password does not meet the requirements below"
         )
+        self.password_not_matching_validation = page.get_by_text("Passwords do not match")
 
     def navigate_to_registration(self):
         self.page.goto("https://eventhub.rahulshettyacademy.com/register")
@@ -25,4 +26,10 @@ class RegisterPage:
         self.email_textbox.fill(email)
         self.password_textbox.fill(password)
         self.confirm_password_textbox.fill(password)
+        self.create_account_button.click()
+
+    def click_create_when_passwords_not_matching(self, email, password):
+        self.email_textbox.fill(email)
+        self.password_textbox.fill(password)
+        self.confirm_password_textbox.fill('DiffPassword1!')
         self.create_account_button.click()
