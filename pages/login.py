@@ -5,12 +5,12 @@ class LoginPage:
         self.email_textbox = page.get_by_role("textbox", name="Email")
         self.password_textbox = page.get_by_role("textbox", name="Password")
         self.sign_in_button = page.get_by_role("button", name="Sign In")
+        self.invalid_credentials_toast = page.get_by_text("Invalid email or password", exact=True)
 
     def navigate_to_login(self):
         self.page.goto('https://eventhub.rahulshettyacademy.com/login')
 
-    def successful_login(self):
-        self.email_textbox.fill("parkerbrenda@example.com")
-        self.password_textbox.fill("TI%4e1Ir5o")
+    def login(self, email, password):
+        self.email_textbox.fill(email)
+        self.password_textbox.fill(password)
         self.sign_in_button.click()
-

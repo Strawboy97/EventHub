@@ -10,10 +10,26 @@ def test_login_navigation_successful(page: Page):
 
     expect(login_page.login_heading).to_be_visible()
 
-def test_successful_login(page: Page):
+
+# Parameterise in future
+def test_successful_login(page: Page, read_user_data):
     login_page = LoginPage(page)
     login_page.navigate_to_login()
-    login_page.successful_login()
+    login_page.login(read_user_data['email'], read_user_data['password'])
     home_page = HomePage(page)
 
     expect(home_page.home_heading).to_be_visible()
+
+def test_incorrect_email_login(page: Page):
+    login_page = LoginPage(page)
+    login_page.navigate_to_login()
+    login_page.login('incorrect@email.com', 'incorrect1!')
+
+    expect(login_page.invalid_credentials_toast).to_be_visible()
+
+def test_incorrect_password_login(page: Page, read_user_data):
+    login_page = LoginPage(page)
+    login_page.navigate_to_login()
+    login_page.login(read_user_data['email'], 'incorrect1!')
+
+    expect(login_page.invalid_credentials_toast).to_be_visible()

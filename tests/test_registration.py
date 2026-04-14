@@ -19,18 +19,20 @@ def test_empty_registration_validation(page: Page):
     expect(register_page.email_validation).to_be_visible()
     expect(register_page.password_empty_validation).to_be_visible()
 
-def test_passwords_not_matching(page: Page, user_data):
+
+def test_passwords_not_matching(page: Page, create_user_data):
     register_page = RegisterPage(page)
     register_page.navigate_to_registration()
-    register_page.click_create_when_passwords_not_matching(user_data["email"], user_data["password"])
+    register_page.click_create_when_passwords_not_matching(create_user_data["email"],
+                                                           create_user_data["password"])
 
     expect(register_page.password_not_matching_validation).to_be_visible()
 
 
-def test_successful_registration(page: Page, user_data):
+def test_successful_registration(page: Page, create_user_data):
     register_page = RegisterPage(page)
     register_page.navigate_to_registration()
-    register_page.register_new_user(user_data["email"], user_data["password"])
+    register_page.register_new_user(create_user_data["email"], create_user_data["password"])
 
     home_page = HomePage(page)
     home_page.navigation_check()
