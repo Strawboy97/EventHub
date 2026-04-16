@@ -1,6 +1,3 @@
-import allure
-
-
 class RegisterPage:
     def __init__(self, page):
         self.page = page
@@ -19,23 +16,12 @@ class RegisterPage:
         )
         self.password_not_matching_validation = page.get_by_text("Passwords do not match")
 
-    @allure.step('Navigate to the Registration Page')
     def navigate_to_registration(self):
         self.page.goto("https://eventhub.rahulshettyacademy.com/register")
 
-    @allure.step('Click Create Account when Fields are Empty')
-    def click_create_when_fields_empty(self):
-        self.create_account_button.click()
 
-    @allure.step('Register user with {email} and {password}')
-    def register_new_user(self, email, password):
+    def register_new_user(self, email, password, confirm_password):
         self.email_textbox.fill(email)
         self.password_textbox.fill(password)
-        self.confirm_password_textbox.fill(password)
-        self.create_account_button.click()
-
-    def click_create_when_passwords_not_matching(self, email, password):
-        self.email_textbox.fill(email)
-        self.password_textbox.fill(password)
-        self.confirm_password_textbox.fill('DiffPassword1!')
+        self.confirm_password_textbox.fill(confirm_password)
         self.create_account_button.click()
