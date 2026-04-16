@@ -78,7 +78,7 @@ def test_successful_logout(page: Page, read_user_data):
     login_page.navigate_to_login()
     login_page.login(read_user_data['email'], read_user_data['password'])
     home_page = HomePage(page)
-
+    home_page.navigation_check()
     home_page.logout()
 
     expect(login_page.login_heading).to_be_visible()

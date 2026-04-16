@@ -1,3 +1,6 @@
+import allure
+
+
 class RegisterPage:
     def __init__(self, page):
         self.page = page
@@ -16,10 +19,11 @@ class RegisterPage:
         )
         self.password_not_matching_validation = page.get_by_text("Passwords do not match")
 
+    @allure.step("Navigate to Registration")
     def navigate_to_registration(self):
         self.page.goto("https://eventhub.rahulshettyacademy.com/register")
 
-
+    @allure.step("Register using {email}, {password} and {confirm_password}")
     def register_new_user(self, email, password, confirm_password):
         self.email_textbox.fill(email)
         self.password_textbox.fill(password)
