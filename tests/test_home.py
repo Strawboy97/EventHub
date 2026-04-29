@@ -53,7 +53,7 @@ def test_home_button_highlight(login_user):
 @allure.story("Home Page")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.testcase('TC-HOME-004')
-@allure.label('owner', 'Colin')
+@allure.label('owner', 'Colin M')
 def test_successful_logout(page:Page,login_user):
     home_page = login_user
     home_page.wait_for_home_page()

@@ -57,7 +57,7 @@ jobs:
       # ── 7. Run Playwright tests with Allure results output ─────────────────
       - name: Run tests
         env:
-          BASE_URL: ${{ secrets.BASE_URL }}
+          BASE_URL: ${{ vars.BASE_URL }}
         run: |
           pytest --alluredir=allure-results -v
         continue-on-error: true  # Ensures report is generated even if tests fail
