@@ -37,7 +37,7 @@ def test_empty_registration_validation(page: Page):
 @allure.feature("Authentication")
 @allure.story("User Registration")
 @allure.severity(allure.severity_level.TRIVIAL)
-@allure.testcase('TC-REGISTER-004')
+@allure.testcase('TC-REGISTER-003')
 @allure.label('owner', 'Colin M')
 def test_passwords_not_matching(page: Page, create_user_data):
     register_page = RegisterPage(page)
@@ -60,6 +60,6 @@ def test_successful_registration(page: Page, create_user_data):
     register_page.register_new_user(create_user_data["email"], create_user_data["password"], create_user_data["password"])
 
     home_page = HomePage(page)
-    home_page.navigation_check()
+    home_page.wait_for_home_page()
 
     expect(home_page.home_heading).to_be_visible()

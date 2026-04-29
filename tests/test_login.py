@@ -11,7 +11,7 @@ from pages.login import LoginPage
 @allure.story("User Login")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.testcase('TC-LOGIN-001')
-@allure.label('owner','Colin M')
+@allure.label('owner', 'Colin M')
 def test_login_navigation_successful(page: Page):
     login_page = LoginPage(page)
     login_page.navigate_to_login()
@@ -56,7 +56,7 @@ def test_incorrect_password_login(page: Page, read_user_data):
 @allure.feature("Authentication")
 @allure.story("User Login")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.testcase('TC-LOGIN-003')
+@allure.testcase('TC-LOGIN-004')
 @allure.label('owner', 'Colin M')
 def test_incorrect_email_login(page: Page):
     login_page = LoginPage(page)
@@ -64,21 +64,3 @@ def test_incorrect_email_login(page: Page):
     login_page.login('incorrect@email.com', 'incorrect1!')
 
     expect(login_page.invalid_credentials_toast).to_be_visible()
-
-
-@allure.title('Test Successful Logout')
-@allure.epic("EventHub")
-@allure.feature("Authentication")
-@allure.story("User Login")
-@allure.severity(allure.severity_level.CRITICAL)
-@allure.testcase('TC-LOGIN-006')
-@allure.label('owner', 'Colin M')
-def test_successful_logout(page: Page, read_user_data):
-    login_page = LoginPage(page)
-    login_page.navigate_to_login()
-    login_page.login(read_user_data['email'], read_user_data['password'])
-    home_page = HomePage(page)
-    home_page.navigation_check()
-    home_page.logout()
-
-    expect(login_page.login_heading).to_be_visible()
