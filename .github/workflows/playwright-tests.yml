@@ -45,7 +45,7 @@ jobs:
       # ── 6. Install Allure CLI ──────────────────────────────────────────────
       - name: Install Allure CLI
         run: |
-          curl -o allure.deb -L https://github.com/allure-framework/allure2/releases/latest/download/allure_2.29.0-1_all.deb
+          curl -o allure.deb -L https://github.com/allure-framework/allure2/releases/latest/download/allure_2.39.0-1_all.deb
           sudo dpkg -i allure.deb
           allure --version
 
