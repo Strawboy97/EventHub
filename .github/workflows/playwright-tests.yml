@@ -3,7 +3,7 @@ name: Playwright Tests + Allure Report
 on:
   push:
     branches:
-      - main  # Runs when code is merged to main
+      - master  # Runs when code is merged to main
 
 permissions:
   contents: write  # Needed to publish Allure report to GitHub Pages
