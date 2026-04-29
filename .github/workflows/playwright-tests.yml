@@ -14,6 +14,9 @@ jobs:
   test:
     name: Run Playwright Tests
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       # ── 1. Checkout code ───────────────────────────────────────────────────
@@ -53,6 +56,8 @@ jobs:
 
       # ── 7. Run Playwright tests with Allure results output ─────────────────
       - name: Run tests
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
         run: |
           pytest --alluredir=allure-results -v
         continue-on-error: true  # Ensures report is generated even if tests fail
@@ -97,4 +102,5 @@ jobs:
 
       - name: Deploy to GitHub Pages
         if: always()
+        id: deployment
         uses: actions/deploy-pages@v4
