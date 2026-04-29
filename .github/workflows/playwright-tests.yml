@@ -46,7 +46,7 @@ jobs:
       - name: Install Allure CLI
         run: |
           curl -o allure.deb -L https://github.com/allure-framework/allure2/releases/latest/download/allure_2.39.0-1_all.deb
-          sudo dpkg -i allure.deb
+          sudo apt-get install -y ./allure.deb
           allure --version
 
       # ── 7. Run Playwright tests with Allure results output ─────────────────
@@ -87,11 +87,12 @@ jobs:
           retention-days: 7
 
       # ── 11. Publish Allure report to GitHub Pages ──────────────────────────
-      - name: Publish Allure report to GitHub Pages
+      - name: Upload Pages artifact
         if: always()
-        uses: peaceiris/actions-gh-pages@v4
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-report
-          keep_files: false
+          path: allure-report
+
+      - name: Deploy to GitHub Pages
+        if: always()
+        uses: actions/deploy-pages@v4
