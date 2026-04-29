@@ -22,3 +22,11 @@ class HomePage:
     @allure.step('Click the logout Button')
     def logout(self):
         self.logout_button.click()
+
+    @allure.step('Click the Events button')
+    def navigate_to_events(self):
+        self.events_button.click()
+
+    @allure.step('Click the My Bookings button')
+    def navigate_to_bookings(self):
+        self.bookings_button.click()
