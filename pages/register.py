@@ -1,5 +1,5 @@
 import allure
-
+from config import BASE_URL
 
 class RegisterPage:
     def __init__(self, page):
@@ -21,7 +21,7 @@ class RegisterPage:
 
     @allure.step("Navigate to Registration")
     def navigate_to_registration(self):
-        self.page.goto("https://eventhub.rahulshettyacademy.com/register")
+        self.page.goto(f"{BASE_URL}/register")
 
     @allure.step("Register using {email}, {password} and {confirm_password}")
     def register_new_user(self, email, password, confirm_password):

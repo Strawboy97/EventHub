@@ -1,5 +1,5 @@
 import allure
-
+from config import BASE_URL
 
 class LoginPage:
     def __init__(self, page):
@@ -12,7 +12,7 @@ class LoginPage:
 
     @allure.step('Navigate to the Login Page')
     def navigate_to_login(self):
-        self.page.goto('https://eventhub.rahulshettyacademy.com/login')
+        self.page.goto(f'{BASE_URL}/login')
 
     @allure.step('Login to EventHub with {email} and {password}')
     def login(self, email, password):
