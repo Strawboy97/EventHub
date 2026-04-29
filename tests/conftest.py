@@ -3,6 +3,9 @@ import os.path
 
 import pytest
 
+from pages.home import HomePage
+from pages.login import LoginPage
+
 
 @pytest.fixture
 def create_user_data(faker):
@@ -14,7 +17,7 @@ def create_user_data(faker):
         with open(file_path, "r") as f:
             existing_file = json.load(f)
     else:
-        existing_file = []
+        raise FileNotFoundError(f"Test data file not found: {file_path}")
 
     existing_file.append(data)
 
@@ -31,6 +34,18 @@ def read_user_data():
     if os.path.exists(file_path):
         with open(file_path, "r") as f:
             existing_file = json.load(f)
+    else:
+        raise FileNotFoundError(f"Test data file not found: {file_path}")
 
     data = existing_file[0]
     return data
+
+
+@pytest.fixture
+def login_user(page, read_user_data):
+    login_page = LoginPage(page)
+    login_page.navigate_to_login()
+    login_page.login(read_user_data['email'], read_user_data['password'])
+
+    home_page = HomePage(page)
+    return home_page
