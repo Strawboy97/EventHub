@@ -1,6 +1,7 @@
 import allure
 from playwright.sync_api import Page, expect
 
+from pages.home import HomePage
 from pages.login import LoginPage
 
 
@@ -11,8 +12,8 @@ from pages.login import LoginPage
 @allure.severity(allure.severity_level.MINOR)
 @allure.testcase('TC-HOME-001')
 @allure.label('owner', 'Colin M')
-def test_logo_displays(login_user):
-    home_page = login_user
+def test_logo_displays(page: Page, login_user):
+    home_page = HomePage(page)
     home_page.wait_for_home_page()
 
     expect(home_page.logo).to_be_visible()
@@ -25,8 +26,8 @@ def test_logo_displays(login_user):
 @allure.severity(allure.severity_level.MINOR)
 @allure.testcase('TC-HOME-002')
 @allure.label('owner', 'Colin M')
-def test_all_nav_items_present(login_user):
-    home_page = login_user
+def test_all_nav_items_present(page: Page, login_user):
+    home_page = HomePage(page)
     home_page.wait_for_home_page()
 
 
@@ -40,8 +41,8 @@ def test_all_nav_items_present(login_user):
 @allure.severity(allure.severity_level.MINOR)
 @allure.testcase('TC-HOME-003')
 @allure.label('owner', 'Colin M')
-def test_home_button_highlight(login_user):
-    home_page = login_user
+def test_home_button_highlight(page: Page, login_user):
+    home_page = HomePage(page)
     home_page.wait_for_home_page()
 
     expect(home_page.home_button).to_contain_class('bg-indigo-50')
@@ -55,9 +56,12 @@ def test_home_button_highlight(login_user):
 @allure.testcase('TC-HOME-004')
 @allure.label('owner', 'Colin M')
 def test_successful_logout(page:Page,login_user):
-    home_page = login_user
+    home_page = HomePage(page)
     home_page.wait_for_home_page()
     home_page.logout()
+
     login_page = LoginPage(page)
 
     expect(login_page.login_heading).to_be_visible()
+
+

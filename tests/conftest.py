@@ -46,6 +46,3 @@ def login_user(page, read_user_data):
     login_page = LoginPage(page)
     login_page.navigate_to_login()
     login_page.login(read_user_data['email'], read_user_data['password'])
-
-    home_page = HomePage(page)
-    return home_page
