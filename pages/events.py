@@ -6,5 +6,5 @@ class EventPage:
         self.search_box = page.get_by_role("textbox", name="Search events, venues…")
         self.event_card = page.get_by_test_id("event-card")
 
-    def search_for_event(self, event_name:str):
+    def search_for_event(self, event_name: str):
         self.search_box.fill(event_name)

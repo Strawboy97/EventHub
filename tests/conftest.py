@@ -45,4 +45,4 @@ def read_user_data():
 def login_user(page, read_user_data):
     login_page = LoginPage(page)
     login_page.navigate_to_login()
-    login_page.login(read_user_data['email'], read_user_data['password'])
+    login_page.login(read_user_data["email"], read_user_data["password"])

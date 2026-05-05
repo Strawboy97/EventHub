@@ -1,6 +1,7 @@
 import allure
 from config import BASE_URL
 
+
 class LoginPage:
     def __init__(self, page):
         self.page = page
@@ -8,13 +9,15 @@ class LoginPage:
         self.email_textbox = page.get_by_role("textbox", name="Email")
         self.password_textbox = page.get_by_role("textbox", name="Password")
         self.sign_in_button = page.get_by_role("button", name="Sign In")
-        self.invalid_credentials_toast = page.get_by_text("Invalid email or password", exact=True)
+        self.invalid_credentials_toast = page.get_by_text(
+            "Invalid email or password", exact=True
+        )
 
-    @allure.step('Navigate to the Login Page')
+    @allure.step("Navigate to the Login Page")
     def navigate_to_login(self):
-        self.page.goto(f'{BASE_URL}/login')
+        self.page.goto(f"{BASE_URL}/login")
 
-    @allure.step('Login to EventHub with {email} and {password}')
+    @allure.step("Login to EventHub with {email} and {password}")
     def login(self, email, password):
         self.email_textbox.fill(email)
         self.password_textbox.fill(password)

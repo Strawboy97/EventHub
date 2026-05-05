@@ -1,6 +1,7 @@
 import allure
 from config import BASE_URL
 
+
 class RegisterPage:
     def __init__(self, page):
         self.page = page
@@ -17,7 +18,9 @@ class RegisterPage:
         self.password_empty_validation = page.get_by_text(
             "Password does not meet the requirements below"
         )
-        self.password_not_matching_validation = page.get_by_text("Passwords do not match")
+        self.password_not_matching_validation = page.get_by_text(
+            "Passwords do not match"
+        )
 
     @allure.step("Navigate to Registration")
     def navigate_to_registration(self):
